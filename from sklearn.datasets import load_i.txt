@@ -1,0 +1,31 @@
+from sklearn.datasets import load_iris
+dataset=load_iris()
+dataset
+
+x1=(dataset.target)
+print(x1)
+
+import pandas as pd
+x=pd.DataFrame(data=dataset['data'],columns=dataset['feature_names'])
+y=dataset['target']
+print(x)
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=.4,random_state=22,shuffle=True)
+print(x_train.shape)
+print(x_test.shape)
+print(y_train.shape)
+print(y_test.shape)
+
+from sklearn.neighbors import KNeighborsClassifier
+clf=KNeighborsClassifier(n_neighbors=4)
+
+clf.fit(x_train,y_train) #training the model
+
+#testing
+y_pred=clf.predict(x_test)
+
+print(x_test,y_pred)
+
+print(x_test)
+print(y_pred)
